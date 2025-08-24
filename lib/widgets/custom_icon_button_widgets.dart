@@ -28,7 +28,6 @@ class CustomIconButtonWidget extends StatelessWidget {
           color: Colors.white,
           shape: BoxShape.rectangle,
           border: Border.all(color: Colors.grey.shade400),
-          borderRadius: BorderRadius.circular(height / 2),
         ),
         alignment: Alignment.center,
         child: SvgPicture.asset(
