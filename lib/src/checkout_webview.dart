@@ -4,12 +4,14 @@ import 'package:webview_flutter/webview_flutter.dart';
 
 class CheckoutWebView extends StatefulWidget {
   final String checkoutUrl;
+  final String title;
   final String returnDeepLink;
   final VoidCallback onReturn;
 
   const CheckoutWebView({
     super.key,
     required this.checkoutUrl,
+    this.title = 'Mollie Pay',
     required this.returnDeepLink,
     required this.onReturn,
   });
@@ -27,7 +29,7 @@ class _CheckoutWebViewState extends State<CheckoutWebView> {
     super.initState();
     _controller = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
-      ..setBackgroundColor(const Color(0x00000000))
+      ..setBackgroundColor(const Color(0x000fffff))
       ..setNavigationDelegate(
         NavigationDelegate(
           onPageStarted: (_) => setState(() => _loading = true),
@@ -48,9 +50,10 @@ class _CheckoutWebViewState extends State<CheckoutWebView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Column(
         children: [
-          CustomAppBar(title: 'Mollie Pay', onTap: widget.onReturn),
+          CustomAppBar(title: widget.title, onTap: widget.onReturn),
           Expanded(
             child: Stack(
               children: [
