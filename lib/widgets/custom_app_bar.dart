@@ -59,7 +59,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                     border: Border.all(color: Colors.grey.shade400),
                   ),
                   alignment: Alignment.center,
-                  child: Icon(Icons.arrow_back),
+                  child: Icon(Icons.arrow_back,color: Colors.black,),
                 ),
               ),
             ),
