@@ -1,17 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:mollie_pay/widgets/custom_icon_button_widgets.dart';
 
 class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
   final String title;
-  final String icon;
   final VoidCallback onTap;
 
-  const CustomAppBar({
-    super.key,
-    required this.title,
-    required this.onTap,
-    this.icon = 'assets/backIcon.svg',
-  });
+  const CustomAppBar({super.key, required this.title, required this.onTap});
 
   @override
   State<CustomAppBar> createState() => _CustomAppBarState();
@@ -53,11 +46,21 @@ class _CustomAppBarState extends State<CustomAppBar> {
                 color: Colors.black,
               ),
             ),
-
             Align(
               alignment: Alignment.centerLeft,
-              child: CustomIconButtonWidget(
+              child: InkWell(
                 onTap: widget.onTap,
+                child: Container(
+                  height: 38,
+                  width: 38,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all(color: Colors.grey.shade400),
+                  ),
+                  alignment: Alignment.center,
+                  child: Icon(Icons.arrow_back),
+                ),
               ),
             ),
           ],
