@@ -51,15 +51,17 @@ class _CheckoutWebViewState extends State<CheckoutWebView> {
       body: Column(
         children: [
           CustomAppBar(title: 'Mollie Pay', onTap: widget.onReturn),
-          Stack(
-            children: [
-              WebViewWidget(controller: _controller),
-              if (_loading)
-                const Align(
-                  alignment: Alignment.topCenter,
-                  child: LinearProgressIndicator(minHeight: 2),
-                ),
-            ],
+          Expanded(
+            child: Stack(
+              children: [
+                WebViewWidget(controller: _controller),
+                if (_loading)
+                  const Align(
+                    alignment: Alignment.topCenter,
+                    child: LinearProgressIndicator(minHeight: 2),
+                  ),
+              ],
+            ),
           ),
         ],
       ),
