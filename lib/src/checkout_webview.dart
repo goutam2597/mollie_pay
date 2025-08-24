@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mollie_pay/widgets/custom_app_bar.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class CheckoutWebView extends StatefulWidget {
@@ -47,15 +48,19 @@ class _CheckoutWebViewState extends State<CheckoutWebView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Checkout')),
-      body: Stack(
+      body: Column(
         children: [
-          WebViewWidget(controller: _controller),
-          if (_loading)
-            const Align(
-              alignment: Alignment.topCenter,
-              child: LinearProgressIndicator(minHeight: 2),
-            ),
+          CustomAppBar(title: 'Mollie Pay', onTap: widget.onReturn),
+          Stack(
+            children: [
+              WebViewWidget(controller: _controller),
+              if (_loading)
+                const Align(
+                  alignment: Alignment.topCenter,
+                  child: LinearProgressIndicator(minHeight: 2),
+                ),
+            ],
+          ),
         ],
       ),
     );
