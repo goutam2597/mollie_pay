@@ -52,8 +52,8 @@ class _CustomAppBarState extends State<CustomAppBar> {
                   Navigator.of(context).pop();
                 },
                 child: Container(
-                  height: 38,
-                  width: 38,
+                  height: 36,
+                  width: 36,
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(8),
