@@ -26,15 +26,11 @@ class CustomIconButtonWidget extends StatelessWidget {
         width: width,
         decoration: BoxDecoration(
           color: Colors.white,
-          shape: BoxShape.rectangle,
+          borderRadius: BorderRadius.circular(8),
           border: Border.all(color: Colors.grey.shade400),
         ),
         alignment: Alignment.center,
-        child: SvgPicture.asset(
-          'assets/backIcon.svg',
-          height: iconHeight,
-          width: iconWidth,
-        ),
+        child: Icon(Icons.arrow_back)
       ),
     );
   }
