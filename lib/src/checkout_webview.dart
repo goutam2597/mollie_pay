@@ -53,7 +53,7 @@ class _CheckoutWebViewState extends State<CheckoutWebView> {
       backgroundColor: Colors.white,
       body: Column(
         children: [
-          CustomAppBar(title: widget.title, onTap: widget.onReturn),
+          CustomAppBar(title: widget.title),
           Expanded(
             child: Stack(
               children: [

@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
   final String title;
-  final VoidCallback onTap;
 
-  const CustomAppBar({super.key, required this.title, required this.onTap});
+  const CustomAppBar({super.key, required this.title});
 
   @override
   State<CustomAppBar> createState() => _CustomAppBarState();
@@ -49,7 +48,9 @@ class _CustomAppBarState extends State<CustomAppBar> {
             Align(
               alignment: Alignment.centerLeft,
               child: InkWell(
-                onTap: widget.onTap,
+                onTap: () {
+                  Navigator.of(context).pop();
+                },
                 child: Container(
                   height: 38,
                   width: 38,
