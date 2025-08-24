@@ -57,7 +57,6 @@ class _CustomAppBarState extends State<CustomAppBar> {
             Align(
               alignment: Alignment.centerLeft,
               child: CustomIconButtonWidget(
-                assetPath: widget.icon,
                 onTap: widget.onTap,
               ),
             ),
