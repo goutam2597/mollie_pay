@@ -1,6 +1,6 @@
 class MolliePaymentResult {
   final String paymentId;
-  final String status; // e.g., paid, open, failed, canceled
+  final String status;
   final Map<String, dynamic> raw;
 
   const MolliePaymentResult({
