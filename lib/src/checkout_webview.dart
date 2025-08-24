@@ -61,7 +61,7 @@ class _CheckoutWebViewState extends State<CheckoutWebView> {
                 if (_loading)
                   const Align(
                     alignment: Alignment.topCenter,
-                    child: LinearProgressIndicator(minHeight: 2),
+                    child: CircularProgressIndicator(),
                   ),
               ],
             ),
