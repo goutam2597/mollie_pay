@@ -58,7 +58,7 @@ class _CheckoutWebViewState extends State<CheckoutWebView> {
             child: Stack(
               children: [
                 WebViewWidget(controller: _controller),
-                if (_loading) Center(child: CircularProgressIndicator()),
+                if (_loading) const Center(child: CircularProgressIndicator()),
               ],
             ),
           ),
