@@ -1,17 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:mollie_pay/widgets/custom_app_bar.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
+/// Minimal WebView widget to handle Mollie hosted checkout.
+///
+/// - Loads [checkoutUrl].
+/// - Intercepts navigation to [returnDeepLink].
+/// - When intercepted, pops the page and calls [onReturn].
 class CheckoutWebView extends StatefulWidget {
+  /// Mollie checkout URL returned by the Payments API.
   final String checkoutUrl;
-  final String title;
+
+  /// Custom scheme deep link to intercept when Mollie redirects back.
   final String returnDeepLink;
+
+  /// Callback when the return deep link is hit.
   final VoidCallback onReturn;
 
+  /// Creates a [CheckoutWebView].
   const CheckoutWebView({
     super.key,
     required this.checkoutUrl,
-    this.title = 'Mollie Pay',
     required this.returnDeepLink,
     required this.onReturn,
   });
@@ -29,7 +37,7 @@ class _CheckoutWebViewState extends State<CheckoutWebView> {
     super.initState();
     _controller = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
-      ..setBackgroundColor(const Color(0x000fffff))
+      ..setBackgroundColor(const Color(0x00000000))
       ..setNavigationDelegate(
         NavigationDelegate(
           onPageStarted: (_) => setState(() => _loading = true),
@@ -50,18 +58,15 @@ class _CheckoutWebViewState extends State<CheckoutWebView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: Column(
+      appBar: AppBar(title: const Text('Checkout')),
+      body: Stack(
         children: [
-          CustomAppBar(title: widget.title),
-          Expanded(
-            child: Stack(
-              children: [
-                WebViewWidget(controller: _controller),
-                if (_loading) const Center(child: CircularProgressIndicator()),
-              ],
+          WebViewWidget(controller: _controller),
+          if (_loading)
+            const Align(
+              alignment: Alignment.topCenter,
+              child: LinearProgressIndicator(minHeight: 2),
             ),
-          ),
         ],
       ),
     );

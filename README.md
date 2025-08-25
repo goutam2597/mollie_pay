@@ -24,7 +24,7 @@ Add the dependency in `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  mollie_pay: ^1.0.0
+  mollie_pay: ^2.0.0
 ```
 
 Then run:

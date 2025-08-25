@@ -2,7 +2,7 @@ name: mollie_pay
 description: >
   Flutter helper to start a Mollie checkout, return to the app via deep link,
   and expose a simple success/pending/failed status for in-app payments.
-version: 1.0.0
+version: 2.0.0
 
 repository: https://github.com/goutam2597/mollie_pay.git
 issue_tracker: https://github.com/goutam2597/mollie_pay/issues
