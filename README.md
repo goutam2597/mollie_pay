@@ -1,39 +1,96 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# Mollie Pay (Flutter)
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/tools/pub/writing-package-pages).
+A minimal Flutter helper demo for taking payments with **Mollie** via an in-app WebView-style flow (package: `mollie_pay`).  
+The example shows how to start a checkout, handle the return deep link, and display the resulting status.
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/to/develop-packages).
--->
+> This package/example is not an official Mollie SDK. Use **test keys** for development and never ship your **secret keys** in the client.
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+---
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+- Start a Mollie checkout from Flutter
+- Redirect back to your app via a **return deep link**
+- Simple success/pending/failed status handling
+- Example app included under `example/`
+
+---
 
 ## Getting started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+### Installation
+
+Add the dependency in `pubspec.yaml`:
+
+```yaml
+dependencies:
+  mollie_pay: ^1.0.0
+```
+
+Then run:
+
+```bash
+flutter pub get
+```
+
+### Provide your API key
+
+**Recommended**: inject via `--dart-define` so you don't hardcode keys:
+
+```bash
+flutter run --dart-define=MOLLIE_TEST_KEY=test_xxx
+```
+
+Access it in code:
+
+```dart
+const mollieTestKey = String.fromEnvironment(
+  'MOLLIE_TEST_KEY',
+  defaultValue: 'test_example_for_dev_only',
+);
+```
+
+> For production, use live keys securely and verify payments server-side using Mollie webhooks.
+
+---
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
-
 ```dart
-const like = 'sample';
+final result = await MollieCheckout.startPayment(
+  context: context,
+  apiKey: mollieTestKey,
+  amount: '100.00',
+  currency: 'USD',
+  description: 'Demo payment',
+  returnDeepLink: 'myapp://payment-return',
+);
+
+// result.status -> "success" | "failed" | "pending"
 ```
 
-## Additional information
+---
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+## Example app
+
+See the full example in `example/lib/main.dart`.
+
+```dart
+FilledButton(
+  onPressed: _busy ? null : _pay,
+  child: const Text('Pay \$100.00'),
+);
+```
+
+---
+
+## Deep links
+
+You must configure OS deep links / app links so that `returnDeepLink` (e.g., `myapp://payment-return`) opens your app.  
+In this demo, the WebView intercepts navigation to the `returnDeepLink` and closes automatically when reached.
+
+---
+
+## License
+
+This project is licensed under the MIT License - see [LICENSE](LICENSE).
